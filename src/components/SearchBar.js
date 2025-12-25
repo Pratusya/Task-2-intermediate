@@ -1,17 +1,19 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { useDebounce } from "../hooks/useCustomHooks";
 
 function SearchBar({ onSearch, placeholder = "Search...", initialValue = "" }) {
   const [query, setQuery] = useState(initialValue);
   const [isFocused, setIsFocused] = useState(false);
   const debouncedQuery = useDebounce(query, 500);
+  const lastSearchedQuery = useRef("");
 
   // Trigger search when debounced query changes
   React.useEffect(() => {
-    if (debouncedQuery.trim()) {
+    if (debouncedQuery.trim() && debouncedQuery !== lastSearchedQuery.current) {
+      lastSearchedQuery.current = debouncedQuery;
       onSearch(debouncedQuery);
     }
-  }, [debouncedQuery, onSearch]);
+  }, [debouncedQuery]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = useCallback(
     (e) => {

@@ -10,8 +10,19 @@ const githubApi = axios.create({
   },
 });
 
+// Store for cancellation tokens
+let searchUsersController = null;
+
 // Search users by username
 export const searchUsers = async (query, page = 1, perPage = 12) => {
+  // Cancel any previous request
+  if (searchUsersController) {
+    searchUsersController.abort();
+  }
+
+  // Create new controller for this request
+  searchUsersController = new AbortController();
+
   try {
     const response = await githubApi.get("/search/users", {
       params: {
@@ -19,12 +30,21 @@ export const searchUsers = async (query, page = 1, perPage = 12) => {
         page,
         per_page: perPage,
       },
+      signal: searchUsersController.signal,
     });
     return {
       users: response.data.items,
       totalCount: response.data.total_count,
     };
   } catch (error) {
+    if (
+      axios.isCancel(error) ||
+      error.name === "AbortError" ||
+      error.code === "ERR_CANCELED"
+    ) {
+      // Request was cancelled, return empty result silently
+      return { users: [], totalCount: 0, cancelled: true };
+    }
     throw handleApiError(error);
   }
 };

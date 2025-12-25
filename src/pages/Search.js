@@ -23,11 +23,15 @@ function Search() {
       setHasSearched(true);
 
       try {
-        const { users, totalCount } = await searchUsers(query, 1);
-        actions.setSearchResults(users);
-        setTotalCount(totalCount);
+        const result = await searchUsers(query, 1);
+        // Ignore cancelled requests
+        if (result.cancelled) return;
+        actions.setSearchResults(result.users);
+        setTotalCount(result.totalCount);
       } catch (error) {
         actions.setError(error.message);
+      } finally {
+        actions.setLoading(false);
       }
     },
     [actions]
