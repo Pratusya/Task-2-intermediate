@@ -15,13 +15,16 @@ function Navbar() {
 
   return (
     <nav className="bg-white/80 backdrop-blur-lg shadow-lg shadow-primary-500/5 sticky top-0 z-50 border-b border-white/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-14 sm:h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-600 via-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30 group-hover:shadow-primary-500/50 transition-all duration-300 group-hover:scale-110">
+          <Link
+            to="/"
+            className="flex items-center space-x-1.5 sm:space-x-2 group"
+          >
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-600 via-primary-500 to-accent-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30 group-hover:shadow-primary-500/50 transition-all duration-300 group-hover:scale-110">
               <svg
-                className="w-6 h-6 text-white"
+                className="w-4 h-4 sm:w-6 sm:h-6 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -34,7 +37,7 @@ function Navbar() {
                 />
               </svg>
             </div>
-            <span className="font-heading font-bold text-xl bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">
+            <span className="font-heading font-bold text-base sm:text-xl bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">
               DevExplorer
             </span>
           </Link>
@@ -58,12 +61,12 @@ function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg text-secondary-600 hover:bg-secondary-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
+            className="md:hidden p-1.5 sm:p-2 rounded-lg text-secondary-600 hover:bg-secondary-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5 sm:w-6 sm:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -91,7 +94,7 @@ function Navbar() {
         <div
           className={`md:hidden transition-all duration-300 ease-in-out ${
             isMenuOpen
-              ? "max-h-64 opacity-100"
+              ? "max-h-64 opacity-100 pb-3"
               : "max-h-0 opacity-0 overflow-hidden"
           }`}
         >
@@ -102,7 +105,7 @@ function Navbar() {
                 to={link.to}
                 onClick={() => setIsMenuOpen(false)}
                 className={({ isActive }) =>
-                  `block px-4 py-2 rounded-lg transition-colors ${
+                  `block px-3 sm:px-4 py-2.5 rounded-lg transition-colors text-sm sm:text-base ${
                     isActive
                       ? "bg-primary-600 text-white"
                       : "text-secondary-600 hover:bg-secondary-100"

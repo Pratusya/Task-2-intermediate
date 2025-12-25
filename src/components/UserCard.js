@@ -3,28 +3,28 @@ import { Link } from "react-router-dom";
 
 function UserCard({ user }) {
   return (
-    <div className="card group animate-slide-up hover:border-primary-200/50">
+    <div className="card group animate-slide-up hover:border-primary-200/50 h-full">
       <div className="flex flex-col items-center text-center">
         {/* Avatar */}
-        <div className="relative mb-4">
+        <div className="relative mb-3 sm:mb-4">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
           <img
             src={user.avatar_url}
             alt={`${user.login}'s avatar`}
-            className="relative w-24 h-24 rounded-full border-4 border-primary-100 group-hover:border-accent-200 transition-all duration-300 group-hover:scale-105"
+            className="relative w-16 h-16 sm:w-20 md:w-24 sm:h-20 md:h-24 rounded-full border-3 sm:border-4 border-primary-100 group-hover:border-accent-200 transition-all duration-300 group-hover:scale-105"
           />
-          <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-primary-500 to-accent-500 text-white text-xs px-2 py-1 rounded-full shadow-lg">
+          <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-gradient-to-r from-primary-500 to-accent-500 text-white text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-lg">
             {user.type}
           </div>
         </div>
 
         {/* Username */}
-        <h3 className="font-heading font-semibold text-lg text-secondary-800 mb-2 group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-500 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+        <h3 className="font-heading font-semibold text-base sm:text-lg text-secondary-800 mb-1 sm:mb-2 group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-500 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 break-all px-1">
           {user.login}
         </h3>
 
         {/* Score Badge */}
-        <div className="flex items-center space-x-1 text-sm text-secondary-500 mb-4">
+        <div className="flex items-center space-x-1 text-xs sm:text-sm text-secondary-500 mb-3 sm:mb-4">
           <svg
             className="w-4 h-4 text-warm-500"
             fill="currentColor"
@@ -36,10 +36,10 @@ function UserCard({ user }) {
         </div>
 
         {/* Actions */}
-        <div className="flex space-x-2">
+        <div className="flex flex-col xs:flex-row gap-2 w-full sm:w-auto">
           <Link
             to={`/user/${user.login}`}
-            className="btn-primary text-sm py-2 px-4"
+            className="btn-primary text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 text-center"
           >
             View Profile
           </Link>
@@ -47,7 +47,7 @@ function UserCard({ user }) {
             href={user.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-outline text-sm py-2 px-4"
+            className="btn-outline text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-4 text-center"
           >
             GitHub
           </a>

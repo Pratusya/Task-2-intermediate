@@ -21,7 +21,7 @@
 /* Custom component styles - Aurora Theme */
 @layer components {
   .btn {
-    @apply px-6 py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
 
   .btn-primary {
@@ -41,19 +41,19 @@
   }
 
   .card {
-    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/10 border border-white/50;
+    @apply bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 transition-all duration-300 hover:shadow-2xl hover:shadow-primary-500/10 border border-white/50;
   }
 
   .card-glass {
-    @apply bg-white/40 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-white/30;
+    @apply bg-white/40 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 border border-white/30;
   }
 
   .input {
-    @apply w-full px-4 py-3 rounded-xl border border-secondary-200 bg-white/80 backdrop-blur-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all duration-300;
+    @apply w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border border-secondary-200 bg-white/80 backdrop-blur-sm focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all duration-300 text-sm sm:text-base;
   }
 
   .nav-link {
-    @apply px-4 py-2 rounded-xl font-medium transition-all duration-300 hover:bg-primary-100/50 hover:text-primary-700;
+    @apply px-3 sm:px-4 py-2 rounded-xl font-medium transition-all duration-300 hover:bg-primary-100/50 hover:text-primary-700;
   }
 
   .nav-link-active {

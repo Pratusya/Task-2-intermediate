@@ -82,16 +82,16 @@ function UserProfile() {
       {/* Profile Header */}
       <div className="bg-gradient-to-br from-primary-700 via-primary-600 to-accent-600 text-white relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-accent-400 rounded-full mix-blend-screen filter blur-3xl opacity-30"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-warm-400 rounded-full mix-blend-screen filter blur-3xl opacity-20"></div>
+          <div className="absolute top-0 right-0 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-accent-400 rounded-full mix-blend-screen filter blur-3xl opacity-30"></div>
+          <div className="absolute bottom-0 left-0 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-warm-400 rounded-full mix-blend-screen filter blur-3xl opacity-20"></div>
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
           <Link
             to="/search"
-            className="inline-flex items-center text-primary-200 hover:text-white mb-6 transition-colors"
+            className="inline-flex items-center text-primary-200 hover:text-white mb-4 sm:mb-6 transition-colors text-sm sm:text-base"
           >
             <svg
-              className="w-5 h-5 mr-2"
+              className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -106,29 +106,33 @@ function UserProfile() {
             Back to Search
           </Link>
 
-          <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+          <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 sm:space-y-6 md:space-y-0 md:space-x-8">
             {/* Avatar */}
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-accent-400 to-warm-400 rounded-full blur-xl opacity-50"></div>
               <img
                 src={user.avatar_url}
                 alt={`${user.login}'s avatar`}
-                className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white/50 shadow-2xl"
+                className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full border-3 sm:border-4 border-white/50 shadow-2xl"
               />
             </div>
 
             {/* Info */}
-            <div className="text-center md:text-left flex-1">
-              <h1 className="font-heading text-3xl md:text-4xl font-bold mb-2">
+            <div className="text-center md:text-left flex-1 px-2">
+              <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">
                 {user.name || user.login}
               </h1>
-              <p className="text-accent-200 text-lg mb-4">@{user.login}</p>
+              <p className="text-accent-200 text-base sm:text-lg mb-2 sm:mb-4">
+                @{user.login}
+              </p>
 
               {user.bio && (
-                <p className="text-primary-100 max-w-2xl mb-4">{user.bio}</p>
+                <p className="text-primary-100 max-w-2xl mb-3 sm:mb-4 text-sm sm:text-base">
+                  {user.bio}
+                </p>
               )}
 
-              <div className="flex flex-wrap justify-center md:justify-start gap-4 text-sm">
+              <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-4 text-xs sm:text-sm">
                 {user.company && (
                   <div className="flex items-center space-x-1">
                     <svg
@@ -222,7 +226,7 @@ function UserProfile() {
               href={user.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn bg-white text-primary-700 hover:bg-primary-50"
+              className="btn bg-white text-primary-700 hover:bg-primary-50 text-sm sm:text-base mt-4 md:mt-0"
             >
               View on GitHub
             </a>
@@ -232,42 +236,50 @@ function UserProfile() {
 
       {/* Stats */}
       <div className="bg-white shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             <div className="text-center">
-              <div className="text-3xl font-bold text-secondary-800">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary-800">
                 {user.public_repos}
               </div>
-              <div className="text-secondary-500">Repositories</div>
+              <div className="text-secondary-500 text-xs sm:text-sm md:text-base">
+                Repositories
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-secondary-800">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary-800">
                 {user.followers.toLocaleString()}
               </div>
-              <div className="text-secondary-500">Followers</div>
+              <div className="text-secondary-500 text-xs sm:text-sm md:text-base">
+                Followers
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-secondary-800">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary-800">
                 {user.following.toLocaleString()}
               </div>
-              <div className="text-secondary-500">Following</div>
+              <div className="text-secondary-500 text-xs sm:text-sm md:text-base">
+                Following
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-secondary-800">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary-800">
                 {user.public_gists}
               </div>
-              <div className="text-secondary-500">Gists</div>
+              <div className="text-secondary-500 text-xs sm:text-sm md:text-base">
+                Gists
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex space-x-4 mb-8 border-b border-secondary-200">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 md:py-8">
+        <div className="flex space-x-2 sm:space-x-4 mb-4 sm:mb-6 md:mb-8 border-b border-secondary-200 overflow-x-auto">
           <button
             onClick={() => setActiveTab("overview")}
-            className={`pb-4 px-2 font-medium transition-colors ${
+            className={`pb-2 sm:pb-4 px-1 sm:px-2 font-medium transition-colors text-sm sm:text-base whitespace-nowrap ${
               activeTab === "overview"
                 ? "text-primary-600 border-b-2 border-primary-600"
                 : "text-secondary-500 hover:text-secondary-700"
@@ -277,7 +289,7 @@ function UserProfile() {
           </button>
           <button
             onClick={() => setActiveTab("repositories")}
-            className={`pb-4 px-2 font-medium transition-colors ${
+            className={`pb-2 sm:pb-4 px-1 sm:px-2 font-medium transition-colors text-sm sm:text-base whitespace-nowrap ${
               activeTab === "repositories"
                 ? "text-primary-600 border-b-2 border-primary-600"
                 : "text-secondary-500 hover:text-secondary-700"
@@ -290,13 +302,13 @@ function UserProfile() {
         {/* Tab Content */}
         {activeTab === "overview" && (
           <div className="animate-fade-in">
-            <h2 className="font-heading text-2xl font-bold text-secondary-800 mb-6">
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-secondary-800 mb-4 sm:mb-6">
               Popular Repositories
             </h2>
             {reposLoading ? (
               <LoadingSpinner text="Loading repositories..." />
             ) : repos.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {repos.slice(0, 6).map((repo) => (
                   <RepoCard key={repo.id} repo={repo} />
                 ))}
@@ -309,13 +321,13 @@ function UserProfile() {
 
         {activeTab === "repositories" && (
           <div className="animate-fade-in">
-            <h2 className="font-heading text-2xl font-bold text-secondary-800 mb-6">
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-secondary-800 mb-4 sm:mb-6">
               All Repositories
             </h2>
             {reposLoading ? (
               <LoadingSpinner text="Loading repositories..." />
             ) : repos.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {repos.map((repo) => (
                   <RepoCard key={repo.id} repo={repo} />
                 ))}

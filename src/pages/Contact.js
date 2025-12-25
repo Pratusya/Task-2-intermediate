@@ -134,16 +134,16 @@ function Contact() {
   return (
     <div className="min-h-screen animate-fade-in">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-accent-600 text-white py-20 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-primary-700 via-primary-600 to-accent-600 text-white py-12 sm:py-16 md:py-20 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-1/4 w-72 h-72 bg-accent-400 rounded-full mix-blend-screen filter blur-3xl opacity-30"></div>
-          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-warm-400 rounded-full mix-blend-screen filter blur-3xl opacity-20"></div>
+          <div className="absolute top-0 right-1/4 w-36 sm:w-48 md:w-72 h-36 sm:h-48 md:h-72 bg-accent-400 rounded-full mix-blend-screen filter blur-3xl opacity-30"></div>
+          <div className="absolute bottom-0 left-1/4 w-36 sm:w-48 md:w-72 h-36 sm:h-48 md:h-72 bg-warm-400 rounded-full mix-blend-screen filter blur-3xl opacity-20"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold mb-6">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 px-2">
             Get In Touch
           </h1>
-          <p className="text-primary-100 text-lg max-w-2xl mx-auto">
+          <p className="text-primary-100 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">
             Have questions or feedback? We'd love to hear from you. Send us a
             message and we'll respond as soon as possible.
           </p>
@@ -151,38 +151,43 @@ function Contact() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 mesh-bg">
+      <section className="py-10 sm:py-12 md:py-16 mesh-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
             {/* Contact Info */}
             <div className="lg:col-span-1">
-              <h2 className="font-heading text-2xl font-bold bg-gradient-to-r from-primary-700 to-accent-600 bg-clip-text text-transparent mb-6">
+              <h2 className="font-heading text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary-700 to-accent-600 bg-clip-text text-transparent mb-4 sm:mb-6">
                 Contact Information
               </h2>
-              <p className="text-secondary-600 mb-8">
+              <p className="text-secondary-600 mb-6 sm:mb-8 text-sm sm:text-base">
                 Reach out to us through any of the following channels or fill
                 out the contact form.
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {contactInfo.map((info) => (
-                  <div key={info.title} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div
+                    key={info.title}
+                    className="flex items-start space-x-3 sm:space-x-4"
+                  >
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 text-primary-600 rounded-lg flex items-center justify-center flex-shrink-0">
                       {info.icon}
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-secondary-800">
+                    <div className="min-w-0">
+                      <h3 className="font-semibold text-secondary-800 text-sm sm:text-base">
                         {info.title}
                       </h3>
                       {info.link ? (
                         <a
                           href={info.link}
-                          className="text-primary-600 hover:text-primary-700 transition-colors"
+                          className="text-primary-600 hover:text-primary-700 transition-colors text-xs sm:text-sm break-all"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-secondary-600">{info.value}</p>
+                        <p className="text-secondary-600 text-xs sm:text-sm">
+                          {info.value}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -190,19 +195,19 @@ function Contact() {
               </div>
 
               {/* Social Links */}
-              <div className="mt-12">
-                <h3 className="font-semibold text-secondary-800 mb-4">
+              <div className="mt-8 sm:mt-12">
+                <h3 className="font-semibold text-secondary-800 mb-3 sm:mb-4 text-sm sm:text-base">
                   Follow Us
                 </h3>
-                <div className="flex space-x-4">
+                <div className="flex space-x-3 sm:space-x-4">
                   <a
                     href="https://github.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-secondary-200 text-secondary-600 rounded-lg flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors"
+                    className="w-9 h-9 sm:w-10 sm:h-10 bg-secondary-200 text-secondary-600 rounded-lg flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors"
                   >
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -217,10 +222,10 @@ function Contact() {
                     href="https://twitter.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-secondary-200 text-secondary-600 rounded-lg flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors"
+                    className="w-9 h-9 sm:w-10 sm:h-10 bg-secondary-200 text-secondary-600 rounded-lg flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors"
                   >
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -231,10 +236,10 @@ function Contact() {
                     href="https://linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-secondary-200 text-secondary-600 rounded-lg flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors"
+                    className="w-9 h-9 sm:w-10 sm:h-10 bg-secondary-200 text-secondary-600 rounded-lg flex items-center justify-center hover:bg-primary-600 hover:text-white transition-colors"
                   >
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -251,12 +256,12 @@ function Contact() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="card">
+              <div className="card p-4 sm:p-6">
                 {isSubmitted ? (
-                  <div className="text-center py-12 animate-fade-in">
-                    <div className="w-20 h-20 mx-auto mb-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                  <div className="text-center py-8 sm:py-10 md:py-12 animate-fade-in">
+                    <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 mx-auto mb-4 sm:mb-6 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
                       <svg
-                        className="w-10 h-10"
+                        className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -269,31 +274,34 @@ function Contact() {
                         />
                       </svg>
                     </div>
-                    <h3 className="font-heading text-2xl font-bold text-secondary-800 mb-2">
+                    <h3 className="font-heading text-xl sm:text-2xl font-bold text-secondary-800 mb-2">
                       Message Sent!
                     </h3>
-                    <p className="text-secondary-600 mb-6">
+                    <p className="text-secondary-600 mb-4 sm:mb-6 text-sm sm:text-base">
                       Thank you for reaching out. We'll get back to you soon.
                     </p>
                     <button
                       onClick={() => setIsSubmitted(false)}
-                      className="btn-primary"
+                      className="btn-primary text-sm sm:text-base"
                     >
                       Send Another Message
                     </button>
                   </div>
                 ) : (
                   <>
-                    <h2 className="font-heading text-2xl font-bold text-secondary-800 mb-6">
+                    <h2 className="font-heading text-xl sm:text-2xl font-bold text-secondary-800 mb-4 sm:mb-6">
                       Send us a Message
                     </h2>
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="space-y-4 sm:space-y-6"
+                    >
+                      <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                         {/* Name */}
                         <div>
                           <label
                             htmlFor="name"
-                            className="block text-sm font-medium text-secondary-700 mb-2"
+                            className="block text-xs sm:text-sm font-medium text-secondary-700 mb-1.5 sm:mb-2"
                           >
                             Name *
                           </label>
@@ -303,7 +311,7 @@ function Contact() {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className={`input ${
+                            className={`input text-sm sm:text-base py-2.5 sm:py-3 ${
                               errors.name
                                 ? "border-red-500 focus:border-red-500 focus:ring-red-200"
                                 : ""
@@ -321,7 +329,7 @@ function Contact() {
                         <div>
                           <label
                             htmlFor="email"
-                            className="block text-sm font-medium text-secondary-700 mb-2"
+                            className="block text-xs sm:text-sm font-medium text-secondary-700 mb-1.5 sm:mb-2"
                           >
                             Email *
                           </label>
@@ -331,7 +339,7 @@ function Contact() {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className={`input ${
+                            className={`input text-sm sm:text-base py-2.5 sm:py-3 ${
                               errors.email
                                 ? "border-red-500 focus:border-red-500 focus:ring-red-200"
                                 : ""
@@ -350,7 +358,7 @@ function Contact() {
                       <div>
                         <label
                           htmlFor="subject"
-                          className="block text-sm font-medium text-secondary-700 mb-2"
+                          className="block text-xs sm:text-sm font-medium text-secondary-700 mb-1.5 sm:mb-2"
                         >
                           Subject *
                         </label>
@@ -360,7 +368,7 @@ function Contact() {
                           name="subject"
                           value={formData.subject}
                           onChange={handleChange}
-                          className={`input ${
+                          className={`input text-sm sm:text-base py-2.5 sm:py-3 ${
                             errors.subject
                               ? "border-red-500 focus:border-red-500 focus:ring-red-200"
                               : ""
@@ -378,7 +386,7 @@ function Contact() {
                       <div>
                         <label
                           htmlFor="message"
-                          className="block text-sm font-medium text-secondary-700 mb-2"
+                          className="block text-xs sm:text-sm font-medium text-secondary-700 mb-1.5 sm:mb-2"
                         >
                           Message *
                         </label>
@@ -387,8 +395,8 @@ function Contact() {
                           name="message"
                           value={formData.message}
                           onChange={handleChange}
-                          rows={5}
-                          className={`input resize-none ${
+                          rows={4}
+                          className={`input resize-none text-sm sm:text-base py-2.5 sm:py-3 ${
                             errors.message
                               ? "border-red-500 focus:border-red-500 focus:ring-red-200"
                               : ""
@@ -406,17 +414,17 @@ function Contact() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="btn-primary w-full flex items-center justify-center"
+                        className="btn-primary w-full flex items-center justify-center text-sm sm:text-base py-2.5 sm:py-3"
                       >
                         {isSubmitting ? (
                           <>
-                            <div className="spinner w-5 h-5 mr-2"></div>
+                            <div className="spinner w-4 h-4 sm:w-5 sm:h-5 mr-2"></div>
                             Sending...
                           </>
                         ) : (
                           <>
                             <svg
-                              className="w-5 h-5 mr-2"
+                              className="w-4 h-4 sm:w-5 sm:h-5 mr-2"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -442,13 +450,13 @@ function Contact() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-white">
+      <section className="py-10 sm:py-12 md:py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-heading text-3xl font-bold text-secondary-800 text-center mb-12">
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold text-secondary-800 text-center mb-8 sm:mb-10 md:mb-12">
             Frequently Asked Questions
           </h2>
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {[
               {
                 question: "Is the GitHub API free to use?",
@@ -471,11 +479,13 @@ function Contact() {
                   "State is managed using React Context API, which allows for global state sharing across components without prop drilling.",
               },
             ].map((faq) => (
-              <div key={faq.question} className="card">
-                <h3 className="font-semibold text-secondary-800 mb-2">
+              <div key={faq.question} className="card p-4 sm:p-6">
+                <h3 className="font-semibold text-secondary-800 mb-1.5 sm:mb-2 text-sm sm:text-base">
                   {faq.question}
                 </h3>
-                <p className="text-secondary-600">{faq.answer}</p>
+                <p className="text-secondary-600 text-xs sm:text-sm">
+                  {faq.answer}
+                </p>
               </div>
             ))}
           </div>

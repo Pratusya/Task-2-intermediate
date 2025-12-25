@@ -5,10 +5,30 @@ const GITHUB_API_BASE = "https://api.github.com";
 // Create axios instance with default config
 const githubApi = axios.create({
   baseURL: GITHUB_API_BASE,
+  timeout: 15000, // 15 second timeout
   headers: {
     Accept: "application/vnd.github.v3+json",
   },
 });
+
+// Retry function with exponential backoff
+const retryRequest = async (requestFn, retries = 2, delay = 1000) => {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      return await requestFn();
+    } catch (error) {
+      const isLastAttempt = i === retries;
+      const isNetworkError = !error.response && error.request;
+
+      if (isLastAttempt || !isNetworkError) {
+        throw error;
+      }
+
+      // Wait before retrying
+      await new Promise((resolve) => setTimeout(resolve, delay * (i + 1)));
+    }
+  }
+};
 
 // Store for cancellation tokens
 let searchUsersController = null;
@@ -113,10 +133,17 @@ function handleApiError(error) {
     }
     return new Error(message);
   } else if (error.request) {
-    // Request made but no response
-    return new Error("Network error. Please check your internet connection.");
+    // Request made but no response (timeout, network error)
+    if (error.code === "ECONNABORTED" || error.message.includes("timeout")) {
+      return new Error(
+        "Request timed out. Please check your connection and try again."
+      );
+    }
+    return new Error(
+      "Unable to connect to GitHub. Please check your internet connection and try again."
+    );
   }
-  return new Error("An unexpected error occurred.");
+  return new Error("An unexpected error occurred. Please try again.");
 }
 
 export default githubApi;

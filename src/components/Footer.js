@@ -51,17 +51,17 @@ function Footer() {
   return (
     <footer className="bg-gradient-to-br from-secondary-900 via-primary-950 to-secondary-900 text-secondary-300 relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-primary-600 rounded-full mix-blend-screen filter blur-3xl opacity-10"></div>
-        <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-accent-600 rounded-full mix-blend-screen filter blur-3xl opacity-10"></div>
+        <div className="absolute top-0 left-1/4 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-primary-600 rounded-full mix-blend-screen filter blur-3xl opacity-10"></div>
+        <div className="absolute bottom-0 right-1/4 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-accent-600 rounded-full mix-blend-screen filter blur-3xl opacity-10"></div>
       </div>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-600 via-primary-500 to-accent-500 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
+          <div className="col-span-2">
+            <div className="flex items-center space-x-2 mb-3 sm:mb-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-600 via-primary-500 to-accent-500 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-4 h-4 sm:w-6 sm:h-6 text-white"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -74,11 +74,11 @@ function Footer() {
                   />
                 </svg>
               </div>
-              <span className="font-heading font-bold text-xl bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
+              <span className="font-heading font-bold text-lg sm:text-xl bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
                 DevExplorer
               </span>
             </div>
-            <p className="text-secondary-400 max-w-md">
+            <p className="text-secondary-400 max-w-md text-xs sm:text-sm">
               Explore GitHub users and repositories with ease. Built with React,
               TailwindCSS, and the GitHub REST API.
             </p>
@@ -86,8 +86,10 @@ function Footer() {
 
           {/* Product Links */}
           <div>
-            <h3 className="font-semibold text-white mb-4">Product</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">
+              Product
+            </h3>
+            <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
               {footerLinks.product.map((link) => (
                 <li key={link.label}>
                   {link.to ? (
@@ -114,8 +116,10 @@ function Footer() {
 
           {/* Company Links */}
           <div>
-            <h3 className="font-semibold text-white mb-4">Company</h3>
-            <ul className="space-y-2">
+            <h3 className="font-semibold text-white mb-3 sm:mb-4 text-sm sm:text-base">
+              Company
+            </h3>
+            <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -131,20 +135,20 @@ function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-12 pt-8 border-t border-secondary-700 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-secondary-400">
+        <div className="mt-8 sm:mt-10 md:mt-12 pt-6 sm:pt-8 border-t border-secondary-700 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs sm:text-sm text-secondary-400 text-center md:text-left">
             © {currentYear} DevExplorer. All rights reserved.
           </p>
 
           {/* Social Links */}
-          <div className="flex space-x-4 mt-4 md:mt-0">
+          <div className="flex space-x-3 sm:space-x-4">
             {footerLinks.social.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-secondary-400 hover:text-white transition-colors"
+                className="text-secondary-400 hover:text-white transition-colors p-1"
                 aria-label={link.label}
               >
                 <SocialIcon icon={link.icon} />

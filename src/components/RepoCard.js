@@ -26,12 +26,12 @@ function RepoCard({ repo }) {
   };
 
   return (
-    <div className="card animate-slide-up h-full flex flex-col">
+    <div className="card animate-slide-up h-full flex flex-col p-4 sm:p-6">
       {/* Header */}
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex items-center space-x-2">
+      <div className="flex items-start justify-between mb-2 sm:mb-3 gap-2">
+        <div className="flex items-center space-x-2 min-w-0 flex-1">
           <svg
-            className="w-5 h-5 text-secondary-500"
+            className="w-4 h-4 sm:w-5 sm:h-5 text-secondary-500 flex-shrink-0"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -47,36 +47,36 @@ function RepoCard({ repo }) {
             href={repo.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-primary-600 hover:text-primary-700 hover:underline truncate"
+            className="font-semibold text-sm sm:text-base text-primary-600 hover:text-primary-700 hover:underline truncate"
           >
             {repo.name}
           </a>
         </div>
         {repo.private && (
-          <span className="bg-secondary-200 text-secondary-700 text-xs px-2 py-1 rounded-full">
+          <span className="bg-secondary-200 text-secondary-700 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full flex-shrink-0">
             Private
           </span>
         )}
       </div>
 
       {/* Description */}
-      <p className="text-secondary-600 text-sm mb-4 flex-grow line-clamp-2">
+      <p className="text-secondary-600 text-xs sm:text-sm mb-3 sm:mb-4 flex-grow line-clamp-2">
         {repo.description || "No description available"}
       </p>
 
       {/* Topics */}
       {repo.topics && repo.topics.length > 0 && (
-        <div className="flex flex-wrap gap-1 mb-4">
+        <div className="flex flex-wrap gap-1 mb-3 sm:mb-4">
           {repo.topics.slice(0, 3).map((topic) => (
             <span
               key={topic}
-              className="bg-primary-100 text-primary-700 text-xs px-2 py-1 rounded-full"
+              className="bg-primary-100 text-primary-700 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full"
             >
               {topic}
             </span>
           ))}
           {repo.topics.length > 3 && (
-            <span className="text-secondary-500 text-xs py-1">
+            <span className="text-secondary-500 text-[10px] sm:text-xs py-0.5 sm:py-1">
               +{repo.topics.length - 3} more
             </span>
           )}
@@ -84,25 +84,29 @@ function RepoCard({ repo }) {
       )}
 
       {/* Stats */}
-      <div className="flex items-center justify-between text-sm text-secondary-500 pt-4 border-t border-secondary-100">
-        <div className="flex items-center space-x-4">
+      <div className="flex flex-wrap items-center justify-between text-xs sm:text-sm text-secondary-500 pt-3 sm:pt-4 border-t border-secondary-100 gap-2">
+        <div className="flex items-center flex-wrap gap-2 sm:gap-4">
           {/* Language */}
           {repo.language && (
             <div className="flex items-center space-x-1">
               <span
-                className="w-3 h-3 rounded-full"
+                className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full"
                 style={{
                   backgroundColor:
                     languageColors[repo.language] || languageColors.default,
                 }}
               ></span>
-              <span>{repo.language}</span>
+              <span className="text-xs sm:text-sm">{repo.language}</span>
             </div>
           )}
 
           {/* Stars */}
           <div className="flex items-center space-x-1">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <svg
+              className="w-3.5 h-3.5 sm:w-4 sm:h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
             <span>{repo.stargazers_count.toLocaleString()}</span>
@@ -111,7 +115,7 @@ function RepoCard({ repo }) {
           {/* Forks */}
           <div className="flex items-center space-x-1">
             <svg
-              className="w-4 h-4"
+              className="w-3.5 h-3.5 sm:w-4 sm:h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -128,7 +132,9 @@ function RepoCard({ repo }) {
         </div>
 
         {/* Updated Date */}
-        <span className="text-xs">Updated {formatDate(repo.updated_at)}</span>
+        <span className="text-[10px] sm:text-xs">
+          Updated {formatDate(repo.updated_at)}
+        </span>
       </div>
     </div>
   );
