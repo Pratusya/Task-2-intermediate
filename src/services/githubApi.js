@@ -1,0 +1,102 @@
+import axios from "axios";
+
+const GITHUB_API_BASE = "https://api.github.com";
+
+// Create axios instance with default config
+const githubApi = axios.create({
+  baseURL: GITHUB_API_BASE,
+  headers: {
+    Accept: "application/vnd.github.v3+json",
+  },
+});
+
+// Search users by username
+export const searchUsers = async (query, page = 1, perPage = 12) => {
+  try {
+    const response = await githubApi.get("/search/users", {
+      params: {
+        q: query,
+        page,
+        per_page: perPage,
+      },
+    });
+    return {
+      users: response.data.items,
+      totalCount: response.data.total_count,
+    };
+  } catch (error) {
+    throw handleApiError(error);
+  }
+};
+
+// Get detailed user information
+export const getUserDetails = async (username) => {
+  try {
+    const response = await githubApi.get(`/users/${username}`);
+    return response.data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+};
+
+// Get user's repositories
+export const getUserRepos = async (username, page = 1, perPage = 10) => {
+  try {
+    const response = await githubApi.get(`/users/${username}/repos`, {
+      params: {
+        page,
+        per_page: perPage,
+        sort: "updated",
+        direction: "desc",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw handleApiError(error);
+  }
+};
+
+// Search repositories
+export const searchRepos = async (query, page = 1, perPage = 12) => {
+  try {
+    const response = await githubApi.get("/search/repositories", {
+      params: {
+        q: query,
+        page,
+        per_page: perPage,
+        sort: "stars",
+        order: "desc",
+      },
+    });
+    return {
+      repos: response.data.items,
+      totalCount: response.data.total_count,
+    };
+  } catch (error) {
+    throw handleApiError(error);
+  }
+};
+
+// Error handler
+function handleApiError(error) {
+  if (error.response) {
+    // Server responded with error
+    const status = error.response.status;
+    const message = error.response.data.message || "An error occurred";
+
+    if (status === 403) {
+      return new Error("API rate limit exceeded. Please try again later.");
+    } else if (status === 404) {
+      return new Error("Resource not found.");
+    } else if (status === 422) {
+      return new Error("Invalid search query. Please try different keywords.");
+    }
+    return new Error(message);
+  } else if (error.request) {
+    // Request made but no response
+    return new Error("Network error. Please check your internet connection.");
+  }
+  return new Error("An unexpected error occurred.");
+}
+
+export default githubApi;
